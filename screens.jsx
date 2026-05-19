@@ -744,26 +744,9 @@ function Messages() {
   const [pending, setPending] = useState(false);
   const sentinelRef = React.useRef(null);
 
-  const SYSTEM_PROMPT = `You are Eline, the warm, gentle matchmaker at Simma — a small Rotterdam project that pairs older home cooks with younger neighbors who want to learn a heritage recipe.
-
-You are messaging Jamila (28, lives in Centrum, learning Surinamese). She recently cooked Pom with Lena, 78, in Overschie.
-
-Reply in 1-3 short sentences. Warm, unhurried. No emoji. Talk like a thoughtful friend, not a chatbot. Reference Simma details where helpful (cooks: Lena/Surinamese, Mirza/Bosnian burek, Carl/Dutch appletaart, Giovanna/Italian lasagna, Fatma/Turkish gözleme, Mike/Cantonese bao).`;
-
-  const getApiKey = () => {
-    let key = localStorage.getItem("simma_api_key") || "";
-    if (!key) {
-      key = window.prompt("Enter your Anthropic API key to chat with Eline:\n(Stored only in this browser — never sent anywhere except api.anthropic.com)") || "";
-      if (key) localStorage.setItem("simma_api_key", key.trim());
-    }
-    return key.trim();
-  };
-
   const send = async () => {
     const text = draft.trim();
     if (!text || pending) return;
-    const apiKey = getApiKey();
-    if (!apiKey) return;
     setHistory(h => [...h, { role: "user", text }]);
     setDraft("");
     setPending(true);
@@ -772,33 +755,16 @@ Reply in 1-3 short sentences. Warm, unhurried. No emoji. Talk like a thoughtful 
         ...history.map(m => ({ role: m.role === "ai" ? "assistant" : "user", content: m.text })),
         { role: "user", content: text }
       ];
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      const res = await fetch("/api/chat", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": apiKey,
-          "anthropic-version": "2023-06-01",
-          "anthropic-dangerous-direct-browser-access": "true",
-        },
-        body: JSON.stringify({
-          model: "claude-haiku-4-5-20251001",
-          max_tokens: 256,
-          system: SYSTEM_PROMPT,
-          messages: conversationMessages,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: conversationMessages }),
       });
-      if (!res.ok) {
-        if (res.status === 401) {
-          localStorage.removeItem("simma_api_key");
-          throw new Error("Invalid API key");
-        }
-        throw new Error(`API error ${res.status}`);
-      }
+      if (!res.ok) throw new Error(`API error ${res.status}`);
       const data = await res.json();
-      const reply = data?.content?.[0]?.text || "";
-      setHistory(h => [...h, { role: "ai", text: reply.trim() || "Sorry — I lost my words for a moment. Could you ask me again?" }]);
+      setHistory(h => [...h, { role: "ai", text: (data.text || "").trim() || "Sorry — I lost my words for a moment. Could you ask me again?" }]);
     } catch (e) {
-      setHistory(h => [...h, { role: "ai", text: e.message === "Invalid API key" ? "That API key didn't work — I've cleared it so you can try again." : "I couldn't reach my notes just now. Try again in a moment?" }]);
+      setHistory(h => [...h, { role: "ai", text: "I couldn't reach my notes just now. Try again in a moment?" }]);
     } finally {
       setPending(false);
     }
