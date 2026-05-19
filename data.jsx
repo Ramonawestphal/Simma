@@ -296,7 +296,7 @@ const SESSIONS = [
 // ─── Recent learners (community) ─────────────────────────────────────────────
 
 const LEARNERS = [
-  { id: 0, name: "Jamila",   age: 28, neighborhood: "Centrum",      photo: LEARNER_PHOTOS[0], learning: "Surinamese" },
+  { id: 0, name: "Ramona",   age: 21, neighborhood: "Centrum",      photo: "ramona.jpg",       learning: "Surinamese" },
   { id: 1, name: "Noah",     age: 24, neighborhood: "Noord",        photo: LEARNER_PHOTOS[1], learning: "Italian" },
   { id: 2, name: "Sanne",    age: 31, neighborhood: "Kralingen",    photo: LEARNER_PHOTOS[2], learning: "Dutch baking" },
   { id: 3, name: "Mira",     age: 26, neighborhood: "Delfshaven",   photo: LEARNER_PHOTOS[3], learning: "Surinamese" },

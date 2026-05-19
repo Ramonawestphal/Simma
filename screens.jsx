@@ -1,4 +1,4 @@
-// Simma — desktop screens.
+﻿// Simma — desktop screens.
 
 const { useState, useEffect, useMemo } = React;
 
@@ -35,7 +35,7 @@ function matchesFilter(session, filter) {
   const cook = cookById(session.cookId);
   if (!cook) return false;
   if (filter === "Nearby") {
-    // Jamila is in Centrum — nearby = walking neighborhoods
+    // Ramona is in Centrum — nearby = walking neighborhoods
     return ["Centrum", "Noord", "Delfshaven", "Crooswijk"].includes(cook.neighborhood);
   }
   if (filter === "This week") {
@@ -98,7 +98,7 @@ function Discover({ onOpenSession, onOpenCooks, account, onClearAccount }) {
   const fresh = allFresh.filter(s => matchesFilter(s, active));
   const totalMatching = recommended.length + fresh.length;
 
-  const greetingName = account?.answers?.name || "Jamila";
+  const greetingName = account?.answers?.name || "Ramona";
   const accountRole = account?.role;
 
   return (
@@ -123,7 +123,7 @@ function Discover({ onOpenSession, onOpenCooks, account, onClearAccount }) {
             <div className="nudge">
               <span className="nudge-mark"><Icon.Heart size={18} /></span>
               <div className="nudge-text">
-                <b>Welcome back, Jamila.</b> It's been twelve days since you last cooked with someone. Lena still has two spots open on Saturday.
+                <b>Welcome back, Ramona.</b> It's been twelve days since you last cooked with someone. Lena still has two spots open on Saturday.
                 {" "}<a href="Signup.html" className="nudge-cta-link">Not signed up? <i>Join the table →</i></a>
               </div>
               <a href="Signup.html" className="nudge-cta">Sign up <Icon.Arrow size={14} /></a>
@@ -886,11 +886,11 @@ function Profile({ onOpenSession }) {
     <div className="screen">
       <div className="container">
         <div className="profile-hero">
-          <img className="avatar avatar-xl" src={LEARNERS[0].photo} alt="Jamila"/>
+          <img className="avatar avatar-xl" src={LEARNERS[0].photo} alt="Ramona"/>
           <div style={{ flex: 1 }}>
             <div className="eyebrow eyebrow-rust" style={{ marginBottom: 10 }}>— Your Simma profile</div>
             <h1 className="h-hero" style={{ fontSize: 60 }}>
-              Jamila <span className="display-italic">El-Amrani.</span>
+              Ramona <span className="display-italic">El-Amrani.</span>
             </h1>
             <div className="muted" style={{ marginTop: 12, fontSize: 16 }}>
               Centrum, Rotterdam · Member since March 2025 · Learning Surinamese

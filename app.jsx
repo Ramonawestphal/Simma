@@ -1,4 +1,4 @@
-// Simma — app shell with top nav and screen routing.
+﻿// Simma — app shell with top nav and screen routing.
 
 const { useState: useStateApp, useEffect: useEffectApp } = React;
 
@@ -147,8 +147,8 @@ function Nav({ tab, onChange }) {
         <span className="nav-spacer"></span>
         <span className="subtle" style={{ fontSize: 13.5, letterSpacing: "0.04em" }}>Rotterdam</span>
         <span className="nav-profile" onClick={() => onChange("profile")}>
-          <img className="avatar avatar-sm" src={LEARNERS[0].photo} alt="Jamila"/>
-          <span style={{ fontSize: 14, fontWeight: 500 }}>Jamila</span>
+          <img className="avatar avatar-sm" src={LEARNERS[0].photo} alt="Ramona"/>
+          <span style={{ fontSize: 14, fontWeight: 500 }}>Ramona</span>
         </span>
       </div>
     </header>
