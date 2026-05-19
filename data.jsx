@@ -314,7 +314,7 @@ const CHAT = [
   {
     day: "Friday 23 May",
     messages: [
-      { role: "ai", text: "Hi Jamila — tomorrow you're cooking with Lena. Don't forget the cassava root; the big Asian grocer on Mathenesserweg always has it fresh." },
+      { role: "ai", text: "Hi Ramona — tomorrow you're cooking with Lena. Don't forget the cassava root; the big Asian grocer on Mathenesserweg always has it fresh." },
       { role: "ai", text: "Want me to send the full shopping list again, just in case?" },
       { role: "user", text: "Already sorted, thanks!" },
       { role: "ai", text: "Lovely. Lena mentioned she'd love an extra bunch of celery — the smell of it brings her back home, she said." },
@@ -323,7 +323,7 @@ const CHAT = [
   {
     day: "Sunday 25 May",
     messages: [
-      { role: "ai", text: "Good morning, Jamila — how was yesterday with Lena?" },
+      { role: "ai", text: "Good morning, Ramona — how was yesterday with Lena?" },
       { role: "user", text: "It was wonderful. I even came home with a piece of pom for my partner." },
       { role: "ai", text: "Lena said almost exactly the same thing — she told me you were a thoughtful student." },
       { role: "ai", text: "Would you like me to save her recipe into your heritage archive? You can always come back to it, and Lena gets a small note when you cook it again." },
